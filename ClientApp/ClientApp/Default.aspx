@@ -3,11 +3,11 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <main>
-        <section class="row" aria-labelledby="aspnetTitle">
-            <h1 id="aspnetTitle">Ofir Adany HomeWork</h1>
+        <section aria-labelledby="aspnetTitle">
+            <h1 id="aspnetTitle">Home Assignment</h1>
         </section>
-        <div class="row">
-            This is the home assignment of ofir adany
+        <div>
+            Welcome to Ofir Adany Home assignment
         </div>
     </main>
 

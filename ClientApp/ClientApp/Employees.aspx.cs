@@ -69,5 +69,10 @@ namespace ClientApp
             sqlDataSource1.Delete();
             BindGridView();
         }
+
+        //protected void btnAddEmployee_Click(object sender, EventArgs e)
+        //{
+        //    Response.Redirect("AddEmployee.aspx");
+        //}
     }
 }

@@ -2,10 +2,20 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <main aria-labelledby="title">
-        The list of employees...
+        <h1>Employees Page
+        </h1>
     </main>
-    <div>
+    <div style="display: flex; flex-direction: row; justify-content: space-between">
+        <div aria-labelledby="title">
+            TBD - Search box
+        </div>
         <div>
+            <%--<asp:Button ID="btnAddEmployee" runat="server" Text="Add Employee" OnClick="btnAddEmployee_Click" />--%>
+            <a class="nav-link" runat="server" href="~/AddEditEmployee">AddEmployee</a>
+        </div>
+    </div>
+
+    <div>
             <asp:SqlDataSource ID="sqlDataSource1" runat="server"
                 ConnectionString="<%$ ConnectionStrings:datWise %>"
                 SelectCommand="SELECT EmployeeID, Firstname, Lastname, Email, Phone, HireDate FROM dbo.Employees"
@@ -33,7 +43,8 @@
                 OnRowUpdating="GridView1_RowUpdating"
                 OnRowCancelingEdit="GridView1_RowCancelingEdit"
                 OnRowDeleting="GridView1_RowDeleting"
-                DataKeyNames="EmployeeID">
+                DataKeyNames="EmployeeID"
+                Width="100%">
                 <Columns>
                     <%-- BoundField is used for simple data presentation --%>
                     <asp:BoundField DataField="EmployeeID" HeaderText="Employee ID" ReadOnly="true" SortExpression="EmployeeID" />
@@ -106,9 +117,18 @@
                         </EditItemTemplate>
                     </asp:TemplateField>
 
+                    <%-- Advanced Edit Button --%>
+                    <asp:TemplateField HeaderText="Advanced Edit">
+                        <ItemTemplate>
+                            <asp:HyperLink ID="hlAdvancedEdit" runat="server"
+                                NavigateUrl='<%# Eval("EmployeeID", "~/AddEditEmployee.aspx?id={0}") %>'
+                                Text="Advanced Edit">
+
+                            </asp:HyperLink>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
                 </Columns>
             </asp:GridView>
-        </div>
-
     </div>
 </asp:Content>

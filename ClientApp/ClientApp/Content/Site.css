@@ -1,5 +1,23 @@
 ﻿/* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+form {
+    flex: 1;
+}
+
+footer {
+    margin-top: auto;
+}
+
+
 .body-content {
     margin-top: 15px;
     padding-left: 15px;

@@ -12,12 +12,12 @@
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
 
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
 </head>
-<body>
-    <form runat="server">
+<body class="d-flex flex-column min-vh-100">
+    <form runat="server" style="display: flex; flex-direction: column">
         <asp:ScriptManager runat="server">
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
@@ -53,13 +53,17 @@
                 </div>
             </div>
         </nav>
-        <div class="container body-content">
+        <div class="container body-content" style="flex-grow: 1; display: flex; flex-direction: column;">
+            <div style="flex-grow:1">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
-            <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
-            </footer>
+                </div>
+            <div  >
+                <hr />
+                <footer style="display:flex; justify-content:center">
+                    <p>&copy; <%: DateTime.Now.Year %> - Ofir Adany Application</p>
+                </footer>
+            </div>
         </div>
     </form>
     <asp:PlaceHolder runat="server">
