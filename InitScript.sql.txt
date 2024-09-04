@@ -1,8 +1,0 @@
-CREATE TABLE Employees (
-	EmployeeID INT IDENTITY(1,1) PRIMARY KEY,
-	Firstname nvarchar(50) NOT NULL,
-	Lastname nvarchar(50) NOT NULL,
-	Email nvarchar(100) NOT NULL,
-	Phone nvarchar(15) NOT NULL,
-	HireDate datetime NULL
-);
