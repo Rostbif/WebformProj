@@ -14,23 +14,23 @@ namespace Client
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            var connectionString = ConfigurationManager.ConnectionStrings["datWise"].ConnectionString;
-            DataTable employees = new DataTable();
+            //var connectionString = ConfigurationManager.ConnectionStrings["datWise"].ConnectionString;
+            //DataTable employees = new DataTable();
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                string query = "SELECT * FROM Employees"; // Adjust the query as needed
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                    {
-                        adapter.Fill(employees);
-                    }
-                }
-            }
+            //using (SqlConnection connection = new SqlConnection(connectionString))
+            //{
+            //    connection.Open();
+            //    string query = "SELECT * FROM Employees"; // Adjust the query as needed
+            //    using (SqlCommand command = new SqlCommand(query, connection))
+            //    {
+            //        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+            //        {
+            //            adapter.Fill(employees);
+            //        }
+            //    }
+            //}
 
-            var x = employees;
+            //var x = employees;
 
         }
     }
