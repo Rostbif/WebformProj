@@ -3,12 +3,9 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <main>
-        <section aria-labelledby="aspnetTitle">
-            <h1 id="aspnetTitle">Home Assignment</h1>
-        </section>
-        <div>
+        <h1>Datwise - Home Assignment</h1>
+        <div style="padding-left:3px">
             Welcome to Ofir Adany Home assignment
         </div>
     </main>
-
 </asp:Content>

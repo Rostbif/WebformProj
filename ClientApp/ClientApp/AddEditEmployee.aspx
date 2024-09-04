@@ -2,30 +2,51 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h2>Add or Edit Employee </h2>
-    <asp:HiddenField ID="hfEmployeeId" runat="server" />
-    <div>
-        <label for="txtFirstName">First Name:</label>
-        <asp:TextBox ID="txtFirstName" runat="server" />
-    </div>
-    <div>
-        <label for="txtLastName">Last Name:</label>
-        <asp:TextBox ID="txtLastName" runat="server" />
-    </div>
-    <div>
-        <label for="txtEmail">Email:</label>
-        <asp:TextBox ID="txtEmail" runat="server" />
-    </div>
-    <div>
-        <label for="txtPhone">Phone:</label>
-        <asp:TextBox ID="txtPhone" runat="server" />
-    </div>
-    <div>
-        <label for="txtHireDate">Hire Date:</label>
-        <%--Here we might want a date picker - TBD--%>
-        <asp:TextBox ID="txtHireDate" runat="server" />
-    </div>
-    <div>
-        <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" />
+
+    <div style="display:flex; flex-direction:column;gap:4px;">
+        <asp:HiddenField ID="hfEmployeeId" runat="server" />
+        <div style="display: flex; flex-direction: column">
+            <label for="txtFirstName">First Name:</label>
+            <div>
+                <asp:TextBox ID="txtFirstName" runat="server" />
+                <asp:RequiredFieldValidator ID="rfvFirstname" runat="server" ControlToValidate="txtFirstName" ErrorMessage="* Required" ForeColor="Red" />
+            </div>
+        </div>
+        <div style="display: flex; flex-direction: column">
+            <label for="txtLastName">Last Name:</label>
+            <div>
+                <asp:TextBox ID="txtLastName" runat="server" />
+                <asp:RequiredFieldValidator ID="rfvLastName" runat="server" ControlToValidate="txtLastName" ErrorMessage="* Required" ForeColor="Red" />
+            </div>
+        </div>
+        <div style="display: flex; flex-direction: column">
+            <label for="txtEmail">Email:</label>
+            <div>
+                <asp:TextBox ID="txtEmail" runat="server" />
+                <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="* Required" ForeColor="Red" />
+                <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="Invalid Email Address" ForeColor="Red" ValidationExpression="\w+([-+.'']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" />
+            </div>
+        </div>
+        <div style="display: flex; flex-direction: column">
+            <label for="txtPhone">Phone:</label>
+            <div>
+                <asp:TextBox ID="txtPhone" runat="server" />
+                <asp:RequiredFieldValidator ID="rfvPhone" runat="server" ControlToValidate="txtPhone" ErrorMessage="* Required" ForeColor="Red" />
+                <asp:RegularExpressionValidator ID="revPhone" runat="server" ControlToValidate="txtPhone" ErrorMessage="Invalid Phone Number" ForeColor="Red" ValidationExpression="^\d{10}$" />
+            </div>
+        </div>
+        <div style="display: flex; flex-direction: column">
+            <label for="txtHireDate">Hire Date:</label>
+            <%--Here we might want a date picker - TBD--%>
+            <div>
+                <asp:TextBox ID="txtHireDate" runat="server" placeholder="DD-MM-YYYY"/>
+                <asp:RequiredFieldValidator ID="rfvHireDate" runat="server" ControlToValidate="txtHireDate" ErrorMessage="* Required" ForeColor="Red" />
+                <asp:CompareValidator ID="cvHireDate" runat="server" ControlToValidate="txtHireDate" ErrorMessage="Invalid Date" ForeColor="Red" Operator="DataTypeCheck" Type="Date" />
+            </div>
+        </div>
+        <div>
+            <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" />
+        </div>
     </div>
 
     <asp:SqlDataSource ID="SqlDataSource1" runat="server"

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -70,9 +71,57 @@ namespace ClientApp
             BindGridView();
         }
 
-        //protected void btnAddEmployee_Click(object sender, EventArgs e)
-        //{
-        //    Response.Redirect("AddEmployee.aspx");
-        //}
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            // Trigger an error deliberately
+            //throw new Exception("a bad exception for testing!");
+
+            GridView1.DataBind();
+        }
+
+        protected void SortButton_Click(object sender, EventArgs e)
+        {
+            string expression = SortList1.SelectedValue;
+            SortDirection direction;
+
+            switch (DirectionList1.SelectedValue)
+            {
+                case "Ascending":
+                    direction = SortDirection.Ascending;
+                    break;
+                case "Descending":
+                    direction = SortDirection.Descending;
+                    break;
+                default:
+                    direction = SortDirection.Ascending;
+                    break;
+            }
+
+            // Use the Sort method to programmatically sort the GridView
+            // control using the sort expression and direction.
+            GridView1.Sort(expression, direction);
+        }
+
+        protected void btnAddEmployee_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AddEditEmployee.aspx");
+
+        }
+
+        /// <summary>
+        /// For debugging the select statements...
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void sqlDataSource1_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
+        {
+            
+            //string query = e.Command.CommandText;
+            //foreach (SqlParameter param in e.Command.Parameters)
+            //{
+            //    query = query.Replace(param.ParameterName, param.Value.ToString());
+            //}
+            //System.Diagnostics.Debug.WriteLine("Executing query: " + query);
+        }
     }
 }

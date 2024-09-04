@@ -1,0 +1,18 @@
+CREATE TABLE Employees (
+    EmployeeID INT IDENTITY(1,1) PRIMARY KEY,
+	Firstname nvarchar(50) NOT NULL,
+	Lastname nvarchar(50) NOT NULL,
+	Email nvarchar(100) NOT NULL,
+	Phone nvarchar(15) NOT NULL,
+	HireDate datetime NULL
+);
+
+
+CREATE TABLE ErrorLog (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    ErrorDate DATETIME NOT NULL,
+    Message NVARCHAR(MAX) NOT NULL,
+    StackTrace NVARCHAR(MAX) NOT NULL,
+    Source NVARCHAR(255) NULL,
+    TargetSite NVARCHAR(255) NULL
+);

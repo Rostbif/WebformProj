@@ -17,5 +17,22 @@ namespace ClientApp
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        /// <summary>
+        /// catches all unhandled exceptions in the application.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            Exception exception = Server.GetLastError();
+            // here we should log this error
+            Logger.LogExceptionToDatabase(exception);
+
+            Server.ClearError();
+
+            // redirect to the custom error page for unhandeled bad exceptions
+            Response.Redirect("~/ErrorPage.aspx");
+        }
     }
 }
