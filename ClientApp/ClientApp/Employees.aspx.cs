@@ -97,40 +97,46 @@ namespace ClientApp
 
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            //GridView1.EditIndex = e.NewEditIndex;
-            //BindGridView();
+            GridView1.EditIndex = e.NewEditIndex;
+            BindGridView();
         }
 
         protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            //// Retrieve the values from the GridView
-            //int employeeID = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Value);
-            //var x = GridView1.Rows[e.RowIndex];
-            //string firstname = ((TextBox)GridView1.Rows[e.RowIndex].FindControl("txtFirstname")).Text;
-            //string lastname = ((TextBox)GridView1.Rows[e.RowIndex].FindControl("txtLastname")).Text;
-            //string email = ((TextBox)GridView1.Rows[e.RowIndex].FindControl("txtEmail")).Text;
-            //string phone = ((TextBox)GridView1.Rows[e.RowIndex].FindControl("txtPhone")).Text;
-            //DateTime hireDate = Convert.ToDateTime(((TextBox)GridView1.Rows[e.RowIndex].FindControl("txtHireDate")).Text);
+            // Ensure the page is valid before proceeding
+            if (!Page.IsValid)
+            {
+                return;
+            }
+
+            // Retrieve the values from the GridView
+            int employeeID = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Value);
+            var x = GridView1.Rows[e.RowIndex];
+            string firstname = ((TextBox)GridView1.Rows[e.RowIndex].FindControl("txtFirstname")).Text;
+            string lastname = ((TextBox)GridView1.Rows[e.RowIndex].FindControl("txtLastname")).Text;
+            string email = ((TextBox)GridView1.Rows[e.RowIndex].FindControl("txtEmail")).Text;
+            string phone = ((TextBox)GridView1.Rows[e.RowIndex].FindControl("txtPhone")).Text;
+            DateTime hireDate = Convert.ToDateTime(((TextBox)GridView1.Rows[e.RowIndex].FindControl("txtHireDate")).Text);
 
 
-            //// Update the employee to the database
-            //sqlDataSource1.UpdateParameters["EmployeeID"].DefaultValue = employeeID.ToString();
-            //sqlDataSource1.UpdateParameters["Firstname"].DefaultValue = firstname;
-            //sqlDataSource1.UpdateParameters["Lastname"].DefaultValue = lastname;
-            //sqlDataSource1.UpdateParameters["Email"].DefaultValue = email;
-            //sqlDataSource1.UpdateParameters["Phone"].DefaultValue = phone;
-            //sqlDataSource1.UpdateParameters["HireDate"].DefaultValue = hireDate.ToString("yyyy-MM-dd");
+            // Update the employee to the database
+            sqlDataSource1.UpdateParameters["EmployeeID"].DefaultValue = employeeID.ToString();
+            sqlDataSource1.UpdateParameters["Firstname"].DefaultValue = firstname;
+            sqlDataSource1.UpdateParameters["Lastname"].DefaultValue = lastname;
+            sqlDataSource1.UpdateParameters["Email"].DefaultValue = email;
+            sqlDataSource1.UpdateParameters["Phone"].DefaultValue = phone;
+            sqlDataSource1.UpdateParameters["HireDate"].DefaultValue = hireDate.ToString("yyyy-MM-dd");
 
-            //sqlDataSource1.Update();
+            sqlDataSource1.Update();
 
-            //GridView1.EditIndex = -1;
-            //BindGridView();
+            GridView1.EditIndex = -1;
+            BindGridView();
         }
 
         protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
-            //GridView1.EditIndex = -1;
-            //BindGridView();
+            GridView1.EditIndex = -1;
+            BindGridView();
         }
 
         #endregion
