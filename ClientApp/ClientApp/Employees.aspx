@@ -45,24 +45,14 @@
             ConnectionString="<%$ ConnectionStrings:datWise %>"
             SelectCommand="SELECT EmployeeID, Firstname, Lastname, Email, Phone, HireDate FROM dbo.Employees WHERE FirstName LIKE '%' + @SearchTerm + '%' OR
                 LastName LIKE '%' + @SearchTerm + '%' OR Email LIKE '%' + @SearchTerm + '%'"
-            UpdateCommand="UPDATE dbo.Employees SET Firstname=@Firstname, Lastname=@Lastname, Email=@Email, Phone=@Phone, HireDate=@HireDate WHERE EmployeeID=@EmployeeID "
             DeleteCommand="DELETE FROM dbo.Employees WHERE EmployeeID=@EmployeeID"
             >
-            <UpdateParameters>
-                <asp:Parameter Name="Firstname" Type="String" />
-                <asp:Parameter Name="Lastname" Type="String" />
-                <asp:Parameter Name="Email" Type="String" />
-                <asp:Parameter Name="Phone" Type="String" />
-                <asp:Parameter Name="HireDate" Type="DateTime" />
-                <asp:Parameter Name="EmployeeID" Type="Int32" />
-            </UpdateParameters>
             <DeleteParameters>
                 <asp:Parameter Name="EmployeeID" Type="Int32" />
             </DeleteParameters>
             <SelectParameters>
                 <%--need to solve here the default value thing, I used a trick here--%>
                 <asp:ControlParameter Name="SearchTerm" ControlID="txtSearch" PropertyName="Text" Type="String" DefaultValue="%" />
-                <%--<asp:Parameter Name="SortExpression" Type="String" DefaultValue="EmployeeId" />--%>
             </SelectParameters>
 
         </asp:SqlDataSource>
@@ -78,7 +68,6 @@
             <Columns>
                 <%-- BoundField is used for simple data presentation --%>
                 <asp:BoundField DataField="EmployeeID" HeaderText="Employee ID" ReadOnly="true" SortExpression="EmployeeID" />
-
                 <asp:TemplateField HeaderText="First Name" SortExpression="Firstname">
                     <ItemTemplate>
                         <%--Here we can use Eval instead of Bind as it's readonly control. If we wanted to edit in row then we had to use Bind--%>

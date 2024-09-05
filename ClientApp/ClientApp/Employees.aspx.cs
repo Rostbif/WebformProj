@@ -74,8 +74,8 @@ namespace ClientApp
         private void BindGridView()
         {
             GridView1.DataBind();
-            //var connectionString = ConfigurationManager.ConnectionStrings["datWise"].ConnectionString;
         }
+
         #endregion
 
         #region Backup and for debugging purposes

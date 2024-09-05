@@ -13,6 +13,7 @@ namespace ClientApp
         {
             if (!IsPostBack && Request.QueryString["id"] != null)
             {
+                // If we are on edit mode we want to load the data of the employee
                 int employeeId;
                 if (int.TryParse(Request.QueryString["id"], out employeeId))
                 {
@@ -50,11 +51,10 @@ namespace ClientApp
                 SqlDataSource1.UpdateParameters["EmployeeId"].DefaultValue = hfEmployeeId.Value;
                 SqlDataSource1.Update();
             }
+
             // Redirect back to the employees page
             Response.Redirect("Employees.aspx");
         }
-
-
 
         /// <summary>
         /// Initialize the form with the data of the employee we want to edit
