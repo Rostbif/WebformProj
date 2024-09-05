@@ -19,7 +19,7 @@ namespace ClientApp
         }
 
         /// <summary>
-        /// catches all unhandled exceptions in the application.
+        /// catches all unhandled exceptions in the application, log them, and redirect the user to an error page.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

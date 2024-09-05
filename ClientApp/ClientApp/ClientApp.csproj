@@ -149,7 +149,7 @@
     <Content Include="Content\bootstrap-grid.rtl.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
-    <Content Include="AddEditEmployee.aspx" />
+    <Content Include="EmployeeForm.aspx" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -233,12 +233,12 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
-    <Compile Include="AddEditEmployee.aspx.cs">
-      <DependentUpon>AddEditEmployee.aspx</DependentUpon>
+    <Compile Include="EmployeeForm.aspx.cs">
+      <DependentUpon>EmployeeForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AddEditEmployee.aspx.designer.cs">
-      <DependentUpon>AddEditEmployee.aspx</DependentUpon>
+    <Compile Include="EmployeeForm.aspx.designer.cs">
+      <DependentUpon>EmployeeForm.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
