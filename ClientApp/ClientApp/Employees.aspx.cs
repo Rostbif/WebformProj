@@ -104,7 +104,7 @@ namespace ClientApp
 
         protected void btnAddEmployee_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AddEditEmployee.aspx");
+            Response.Redirect("EmployeeForm.aspx");
 
         }
 

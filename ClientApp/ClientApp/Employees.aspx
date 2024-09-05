@@ -147,7 +147,7 @@
                 <asp:TemplateField HeaderText="Actions">
                     <ItemTemplate>
                         <asp:HyperLink ID="hlAdvancedEdit" runat="server"
-                            NavigateUrl='<%# Eval("EmployeeID", "~/AddEditEmployee.aspx?id={0}") %>'
+                            NavigateUrl='<%# Eval("EmployeeID", "~/EmployeeForm.aspx?id={0}") %>'
                             Text="Edit">
                         </asp:HyperLink>
                         <asp:LinkButton ID="lnkDelete" runat="server" Text="Delete"
