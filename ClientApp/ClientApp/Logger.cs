@@ -9,6 +9,10 @@ namespace ClientApp
 {
     public static class Logger
     {
+        /// <summary>
+        /// Log Errors to the DB. An Independant Static class that can be used by any class/page.
+        /// </summary>
+        /// <param name="exception"></param>
         public static void LogExceptionToDatabase(Exception exception)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["Datwise"].ConnectionString;
