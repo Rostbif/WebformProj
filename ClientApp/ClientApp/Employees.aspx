@@ -1,11 +1,15 @@
 ﻿<%@ Page Title="About" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Employees.aspx.cs" Inherits="ClientApp.About" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    
     <main aria-labelledby="title">
         <h1>Employees Page
         </h1>
     </main>
+
     <div style="display: flex; flex-direction: row; justify-content: space-between">
+
+        <%--Search Sort and Add Employee bar--%>
         <div aria-labelledby="title">
             <label for="txtSearch">Search:</label>
             <asp:TextBox ID="txtSearch" runat="server" />
@@ -35,6 +39,7 @@
         </div>
     </div>
 
+    <%--SQL data source to interact with the DB--%>
     <div>
         <asp:SqlDataSource ID="sqlDataSource1" runat="server"
             ConnectionString="<%$ ConnectionStrings:datWise %>"
@@ -42,7 +47,7 @@
                 LastName LIKE '%' + @SearchTerm + '%' OR Email LIKE '%' + @SearchTerm + '%'"
             UpdateCommand="UPDATE dbo.Employees SET Firstname=@Firstname, Lastname=@Lastname, Email=@Email, Phone=@Phone, HireDate=@HireDate WHERE EmployeeID=@EmployeeID "
             DeleteCommand="DELETE FROM dbo.Employees WHERE EmployeeID=@EmployeeID"
-            OnSelecting="sqlDataSource1_Selecting">
+            >
             <UpdateParameters>
                 <asp:Parameter Name="Firstname" Type="String" />
                 <asp:Parameter Name="Lastname" Type="String" />
@@ -62,11 +67,10 @@
 
         </asp:SqlDataSource>
 
+
+        <%--The Grid view to present the data--%>
         <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource1"
             AutoGenerateColumns="false"
-            OnRowEditing="GridView1_RowEditing"
-            OnRowUpdating="GridView1_RowUpdating"
-            OnRowCancelingEdit="GridView1_RowCancelingEdit"
             OnRowDeleting="GridView1_RowDeleting"
             DataKeyNames="EmployeeID"
             Width="100%"
@@ -74,20 +78,14 @@
             <Columns>
                 <%-- BoundField is used for simple data presentation --%>
                 <asp:BoundField DataField="EmployeeID" HeaderText="Employee ID" ReadOnly="true" SortExpression="EmployeeID" />
+
                 <asp:TemplateField HeaderText="First Name" SortExpression="Firstname">
                     <ItemTemplate>
-                        <%--Here we can use Eval instead of Bind as it's readonly control--%>
+                        <%--Here we can use Eval instead of Bind as it's readonly control. If we wanted to edit in row then we had to use Bind--%>
                         <asp:Label ID="lblFirstname" runat="server"
                             Text='<%# Eval("Firstname") 
                                 %>'></asp:Label>
                     </ItemTemplate>
-                    <EditItemTemplate>
-                        <%-- This is a data-binding expression, it's used to 2-way binding --%>
-                        <asp:TextBox ID="txtFirstname" runat="server"
-                            Text='<%# Bind("Firstname")%>'>
-
-                        </asp:TextBox>
-                    </EditItemTemplate>
                 </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Last Name" SortExpression="Lastname">
@@ -95,12 +93,6 @@
                         <asp:Label ID="lblLastname" runat="server"
                             Text='<%# Eval("Lastname") %>'></asp:Label>
                     </ItemTemplate>
-                    <EditItemTemplate>
-                        <asp:TextBox ID="txtLastname" runat="server"
-                            Text='<%# Bind("Lastname")%>'>
-
-                        </asp:TextBox>
-                    </EditItemTemplate>
                 </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Email" SortExpression="Email">
@@ -108,12 +100,6 @@
                         <asp:Label ID="lblEmail" runat="server"
                             Text='<%# Eval("Email") %>'></asp:Label>
                     </ItemTemplate>
-                    <EditItemTemplate>
-                        <asp:TextBox ID="txtEmail" runat="server"
-                            Text='<%# Bind("Email")%>'>
-
-                        </asp:TextBox>
-                    </EditItemTemplate>
                 </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Phone" SortExpression="Phone">
@@ -121,12 +107,6 @@
                         <asp:Label ID="lblPhone" runat="server"
                             Text='<%# Eval("Phone") %>'></asp:Label>
                     </ItemTemplate>
-                    <EditItemTemplate>
-                        <asp:TextBox ID="txtPhone" runat="server"
-                            Text='<%# Bind("Phone")%>'>
-
-                        </asp:TextBox>
-                    </EditItemTemplate>
                 </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Hire Date" SortExpression="HireDate">
@@ -135,15 +115,9 @@
                             Text='<%# Eval("HireDate", "{0:yyyy-MM-dd}") %>'>
                         </asp:Label>
                     </ItemTemplate>
-                    <EditItemTemplate>
-                        <asp:TextBox ID="txtHireDate" runat="server"
-                            Text='<%# Bind("HireDate", "{0:yyyy-MM-dd}") %>'>
-
-                        </asp:TextBox>
-                    </EditItemTemplate>
                 </asp:TemplateField>
 
-                <%-- Advanced Edit Button --%>
+                <%-- Actions (Edit & Delete) Column --%>
                 <asp:TemplateField HeaderText="Actions">
                     <ItemTemplate>
                         <asp:HyperLink ID="hlAdvancedEdit" runat="server"
