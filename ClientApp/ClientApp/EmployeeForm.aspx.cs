@@ -29,6 +29,12 @@ namespace ClientApp
         /// <param name="e"></param>
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            // Ensure the page is valid before proceeding, to make sure user didn't tried to pass validation.
+            if (!Page.IsValid)
+            {
+                return;
+            }
+
             // Insert mode:
             if (string.IsNullOrEmpty(hfEmployeeId.Value))
             {
@@ -62,7 +68,10 @@ namespace ClientApp
         /// <param name="employeeId"></param>
         private void LoadEmployee(int employeeId)
         {
+            // trigger the select command of the Sql data source to retrieve the employee data.
             var dataView = (System.Data.DataView)SqlDataSource1.Select(DataSourceSelectArguments.Empty);
+
+            // if we retrieved the data successfully then we fill the form with the data.
             if (dataView.Count > 0)
             {
                 var row = dataView[0];
